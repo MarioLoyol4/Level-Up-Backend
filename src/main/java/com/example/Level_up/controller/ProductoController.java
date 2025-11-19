@@ -50,5 +50,6 @@ public class ProductoController {
     @Operation(summary = "Delete a producto")
     public void deleteProducto(@PathVariable Long id){
         productoService.deleteProducto(id);
+
     }
 }
