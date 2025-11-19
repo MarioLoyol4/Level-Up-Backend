@@ -29,6 +29,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody Map<String, String> body){
+        System.out.println(body);
         String nombre = body.get("nombre");
         String email = body.get("email");
         String password = body.get("password");

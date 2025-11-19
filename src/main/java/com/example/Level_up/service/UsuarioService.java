@@ -13,6 +13,7 @@ import java.util.Optional;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Usuario register(String nombre, String email ,String password){
