@@ -16,13 +16,18 @@ public class UsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Usuario register(String nombre, String email ,String password){
+    public Usuario register(String nombre, String email ,String password, String role){
         Usuario usuario = Usuario.builder()
                 .nombre(nombre)
                 .password(passwordEncoder.encode(password))
                 .email(email)
+                .role(role != null ? role : "USER")
                 .build();
         return usuarioRepository.save(usuario);
+    }
+
+    public Usuario register(String nombre, String email, String password){
+        return register(nombre, email, password, "USER");
     }
 
     public Optional<Usuario> findByEmail(String email){

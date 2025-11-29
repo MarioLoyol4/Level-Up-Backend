@@ -20,9 +20,10 @@ public class JwtService {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String email, String role) {
         return Jwts.builder()
-                .subject(username)
+                .subject(email)
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION))
                 .signWith(getSigningKey(), Jwts.SIG.HS256)
@@ -38,6 +39,19 @@ public class JwtService {
                     .getPayload()
                     .getSubject();
         } catch (JwtException e) {
+            return null;
+        }
+    }
+
+    public String extractRRole(String token){
+        try {
+            Claims claims = Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return claims.get("role", String.class);
+        } catch (JwtException e){
             return null;
         }
     }

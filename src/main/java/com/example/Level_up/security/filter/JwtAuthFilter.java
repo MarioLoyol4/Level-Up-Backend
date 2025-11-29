@@ -33,7 +33,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String path = request.getRequestURI();
 
         // NO validar token en rutas públicas
-        if (path.startsWith("/auth/") || path.startsWith("/h2-console/")) {
+        if (path.startsWith("/auth/") || path.startsWith("/h2-console/") || path.startsWith("/api/productos")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -46,10 +46,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 // ⭐ VALIDAR EL TOKEN
                 if (jwtService.isTokenValid(token)) {
-                    String username = jwtService.extractUsername(token);
+                    String email = jwtService.extractUsername(token);
 
                     // ⭐ CARGAR EL USUARIO
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
                     // ⭐ CREAR LA AUTENTICACIÓN
                     UsernamePasswordAuthenticationToken authToken =

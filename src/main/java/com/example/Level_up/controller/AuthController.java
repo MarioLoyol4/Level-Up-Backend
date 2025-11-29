@@ -1,6 +1,7 @@
 package com.example.Level_up.controller;
 
 
+import com.example.Level_up.model.Usuario;
 import com.example.Level_up.security.jwt.JwtService;
 import com.example.Level_up.service.UsuarioService;
 
@@ -35,14 +36,22 @@ public class AuthController {
             String nombre = body.get("nombre");
             String email = body.get("email");
             String password = body.get("password");
+            String role = body.getOrDefault("role","USER");
 
             if (nombre == null || email == null || password == null || email.isBlank() || password.isBlank()) {
                 return ResponseEntity.badRequest()
                         .body(Map.of("error", "Email y password son requeridos"));
             }
-            usuarioService.register(nombre, email, password);
+
+            if (!role.equals("USER") && !role.equals("ADMIN")){
+                role = "USER";
+            }
+
+            usuarioService.register(nombre, email, password, role);
             return ResponseEntity.ok()
-                    .body(Map.of("message", "Usuario registrado correctamente"));
+                    .body(Map.of("message", "Usuario registrado correctamente",
+                    "role", role
+                    ));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -60,10 +69,15 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(email, password));
 
             if (auth.isAuthenticated()) {
-                String token = jwtService.generateToken(email);
+                Usuario usuario = usuarioService.findByEmail(email)
+                        .orElseThrow(() -> new RuntimeException("Email no encontrado"));
+
+                String token = jwtService.generateToken(email, usuario.getRole());
+
                 return ResponseEntity.ok(Map.of(
                         "token", token,
-                        "email", email
+                        "email", email,
+                        "role" , usuario.getRole()
                 ));
             }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
