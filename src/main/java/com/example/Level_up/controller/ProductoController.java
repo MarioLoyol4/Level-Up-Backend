@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/productos")
 @Tag(name = "Productos", description = "Producto Management System")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
@@ -47,7 +47,6 @@ public class ProductoController {
             existingProducto.setNombre(producto.getNombre());
             existingProducto.setCategoria(producto.getCategoria());
             existingProducto.setPrecio(producto.getPrecio());
-            existingProducto.setDescripcion(producto.getDescripcion());
             existingProducto.setImagen(producto.getImagen());
             return productoService.saveProducto(existingProducto);
         }

@@ -21,37 +21,79 @@ public class DataSeeder {
             if (repository.count() == 0){
                 repository.saveAll(Arrays.asList(
                         new Producto(
-                                "CO001",
+                                1,
                                 "PlayStation 5",
                                 "Consolas",
-                                "Consola de última generación de Sony.",
                                 549990.0,
-                                "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21"
+                                "https://i5.walmartimages.cl/asr/e0ba681e-77a6-4ad2-aa5f-a9ecee747292.126d85165f67961f59315dd5ffe5be61.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
                         ),
                         new Producto(
-                                "AC001",
+                                2,
                                 "Control Xbox Series X",
                                 "Accesorios",
-                                "Mando inalámbrico Xbox Series X.",
                                 59990.0,
                                 "https://png.pngtree.com/png-clipart/20240901/original/pngtree-wireless-xbox-controller-on-white-png-image_15908916.png"
                         ),
                         new Producto(
-                                "JM001",
+                                3,
                                 "Catan",
                                 "Juegos de Mesa",
-                                "El clásico juego de estrategia.",
                                 34990.0,
-                                "https://www.pngfind.com/pngs/m/224-2240848_catan-board-game-hd-png-download.png"
+                                "https://pendulo.com/imagenes_grandes/8436017/843601722010.GIF"
                         ),
                         new Producto(
-                                "SG001",
+                                4,
                                 "Secretlab Titan Evo",
                                 "Sillas Gamers",
-                                "Silla ergonómica de nivel profesional.",
                                 389990.0,
-                                "https://png.pngtree.com/png-vector/20240709/ourlarge/pngtree-black-gaming-chair-png-image_13050960.png"
+                                "https://images-na.ssl-images-amazon.com/images/I/51HHjm67W4L._AC_UL495_SR435,495_.jpg"
+                        ),
+                        new Producto(
+                                5,
+                                "Carcassonne",
+                                "juegos-mesa",
+                                15000.0,
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk_fV2gMez_V20qjGgjdqOCY4j-C4oxN_v8A&s"
+
+                        ),
+                        new Producto(
+                                6,
+                                "Cashflow",
+                                "juegos-mesa",
+                                25000.0,
+                                "https://play-lh.googleusercontent.com/5wVf_t7ngsvAmH9WQmB40QCP_SiuKK6G2s8dS6TtjPN_g87Kf0LoRFD3GsYXAzwIwkk=w526-h296-rw"
+                        ),
+                        new Producto(
+                                7,
+                                "Silla Gamer Azul",
+                                "sillas",
+                                85000.0,
+                                "https://cl-cenco-pim-resizer.ecomm.cencosud.com/unsafe/adaptive-fit-in/3840x0/filters:quality(75)/prd-cl/product-medias/MK0P5BRMO3/f3e1bb3f-ebe8-49b7-8581-88b85d6c99a2/1688625293290-MK0P5BRMO3-1-1.webp"
+                        ),
+                        new Producto(
+                         8,
+                        "Silla Gamer Celeste",
+                        "sillas",
+                        85000.0,
+                        "https://http2.mlstatic.com/D_NQ_NP_635728-MLA74806225271_022024-O.webp"
+                        ),
+                        new Producto(
+                                9,
+                                "Mouse Pad Rgb Xl",
+                                "Accesorios",
+                                10990.0,
+                                "https://store.capcom.cl/wp-content/uploads/2021/11/fgd-02-rgb-gaming-mouse-pad-myra-original-imag7hvbjfzmg35c.jpeg"
+                        ),
+                        new Producto(
+                                10,
+                                "Audifonos Gamer Hyperx",
+                                "Accesorios",
+                                69990.0,
+                                "https://www.ebest.cl/media/catalog/product/cache/47abc4af9d81a631bd44d97ba9797770/h/y/hyperx-cloud-stinger-5.jpg"
                         )
+
+
+
                 ));
                 System.out.println("---DATOS DE PRUEBA CARGADOS EN BASE DE DATOS---");
             } else {
